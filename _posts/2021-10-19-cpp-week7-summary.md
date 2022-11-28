@@ -18,7 +18,7 @@ tags: [cpp, inst, summary]
 간접참조연산자 : ->
  - 포인터 객체가 멤버변수, 함수에 접근하기 위해 사용한다.
 
-```C++
+```CPP
 coco.getAge() // 일반 객체 coco의 나이를 getAge() 멤버 함수를 호출해 얻는다.
 coco.sleep() // 일반 객체 coco의 sleep() 멤버 함수를 호출한다.
 pCoco->getAge() // 포인터 객체 pCoco의 나이를 getAge() 멤버 함수를 호출해 얻는다.

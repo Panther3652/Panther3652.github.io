@@ -24,7 +24,7 @@ tags: [cpp, inst, summary]
 
 ## 과제
 
-```C++
+```CPP
 #include <iostream>
 
 class Point {

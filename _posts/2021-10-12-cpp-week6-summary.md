@@ -10,7 +10,7 @@ tags: [cpp, inst, summary]
 
 ### Integer 클래스와 객체
 
-```C++
+```CPP
 class Integer {         // Integer라는 이름의 클래스
     private:            // 속성
         int val;        // 멤버 변수 / private 속성
@@ -25,7 +25,7 @@ Integer Val2;           // 객체 정의 방법 2
 
 #### 클래스 내부에서 정의
 
-```C++
+```CPP
 class Dog {
     private:
         int age;
@@ -41,7 +41,7 @@ class Dog {
 
 #### 클래스 외부에서 정의
 
-```C++
+```CPP
 class Dog {
     private:
         int age;
@@ -68,7 +68,7 @@ C++ 표준 라이브러리 네임스페이스
 
 ### Using 지시문 (Directive)
 
-```C++
+```CPP
 using namespace std;
 ```
 
@@ -91,7 +91,7 @@ inline 함수는 함수 코드 블록의 복사본인 기계어 코드가 직접
 
 #### 멤버 함수 클래스 내부 정의
 
-```C++
+```CPP
 #include <iostream>
 using namespace std;
 
@@ -134,7 +134,7 @@ int main() {
 
 #### 멤버 함수 클래스 외부 정의
 
-```C++
+```CPP
 #include <iostream>
 using namespace std;
 

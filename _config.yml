@@ -18,9 +18,9 @@ timezone: Asia/Seoul
 # jekyll-seo-tag settings › https://github.com/jekyll/jekyll-seo-tag/blob/master/docs/usage.md
 # ↓ --------------------------
 
-title: Panther                         # the main title
+title: Gi-Chang Kim                         # the main title
 
-tagline: Hmm
+tagline: a.k.a Panther
 
 description: >
 
@@ -37,7 +37,7 @@ social:
   # Change to your full name.
   # It will be displayed as the default author of the posts and the copyright owner in the Footer
   name: Gi-Chang Kim
-  email: panther3652@gmail.com             # change to your email address
+  email: gckim2617@gmail.com            # change to your email address
   links:
     # The first element serves as the copyright owner's link
     -       # change to your twitter homepage

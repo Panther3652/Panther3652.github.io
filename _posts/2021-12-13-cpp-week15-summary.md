@@ -1,7 +1,7 @@
 ---
 title: C++ 15주차 요약
 author: Gi-Chang Kim (Panther)
-date: 2021-12-03 19:42 +0900
+date: 2021-12-13 19:42 +0900
 categories: [Inst, CPP]
 tags: [cpp, inst, summary]
 ---

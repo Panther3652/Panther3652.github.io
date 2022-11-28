@@ -12,7 +12,7 @@ const형 멤버함수는 해당 멤버변수를 변경하는 연산을 수행할
 const 함수는 const 함수만 호출할 수 있으며 일반 멤버함수에는 접근할 수 없다.
 const 형을 선언할 때 멤버변수는 형 앞에, 멤버함수는 괄호 뒤에 const를 추가한다.
 
-```C++
+```CPP
 const int age;
 int getAge() const;
 ```
@@ -22,7 +22,7 @@ int getAge() const;
 객체가 const로 지정되면 해당 객체에 초기화된 데이터는 변경할 수 없으며 const로 지정된 멤버함수만 호출할 수 있다.
 객체를 정의할 때 클래스 이름 앞에 const를 추가하여 객체를 const로 지정할 수 있다.
 
-```C++
+```CPP
 const Dog happy;
 ```
 
