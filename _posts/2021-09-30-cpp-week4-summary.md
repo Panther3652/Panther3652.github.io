@@ -1,6 +1,6 @@
 ---
 title: C++ 4주차 요약
-author: Gi-Chang Kim (Panther)
+author: Ki-Chang Kim (Panther K)
 date: 2021-09-30 00:40 +0900
 categories: [Inst, CPP]
 tags: [cpp, inst, summary]

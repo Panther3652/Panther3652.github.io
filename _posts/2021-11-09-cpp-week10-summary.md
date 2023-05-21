@@ -1,6 +1,6 @@
 ---
 title: C++ 10주차 요약
-author: Gi-Chang Kim (Panther)
+author: Ki-Chang Kim (Panther K)
 date: 2021-11-09 22:03 +0900
 categories: [Inst, CPP]
 tags: [cpp, inst, summary]
