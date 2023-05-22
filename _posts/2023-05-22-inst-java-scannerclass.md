@@ -1,5 +1,5 @@
 ---
-title: [Java] Scanner 클래스
+title: <Jqvq> Scanner 클래스
 author: Ki-Chang Kim (Panther K)
 date: 2023-05-22 15:00 +0900
 categories: [Inst, Java]
@@ -46,7 +46,7 @@ Scanner 클래스는 입력된 키 값을 **공백 문자**를 기준으로 분�
   - 타입: long
     - 다음 토큰을 long 타입으로 리턴한다.
 - nextFloat()
-  - 타입: floar
+  - 타입: float
     - 다음 토큰을 float 타입으로 리턴한다.
 - nextDouble()
   - 타입: double
@@ -60,7 +60,7 @@ Scanner 클래스는 입력된 키 값을 **공백 문자**를 기준으로 분�
 Scanner 객체를 종료하려면 다음을 사용한다:
 
 ```java
-scanner.clpse()
+scanner.close()
 ```
 
 Scanner 객체가 종료되면 System.in도 함께 종료되므로 더 이상 System.in을 사용해 키 입력을 받틀 수 없다.   
