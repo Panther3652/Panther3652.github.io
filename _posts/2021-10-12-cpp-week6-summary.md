@@ -2,15 +2,15 @@
 title: C++ 6주차 요약
 author: Ki-Chang Kim (Panther K)
 date: 2021-10-12 22:03 +0900
-categories: [Inst, CPP]
-tags: [cpp, inst, summary]
+categories: [College, CPP]
+tags: [college, cpp]
 ---
 
 ## 클래스 (Class)
 
 ### Integer 클래스와 객체
 
-```CPP
+```cpp
 class Integer {         // Integer라는 이름의 클래스
     private:            // 속성
         int val;        // 멤버 변수 / private 속성
@@ -25,7 +25,7 @@ Integer Val2;           // 객체 정의 방법 2
 
 #### 클래스 내부에서 정의
 
-```CPP
+```cpp
 class Dog {
     private:
         int age;
@@ -41,7 +41,7 @@ class Dog {
 
 #### 클래스 외부에서 정의
 
-```CPP
+```cpp
 class Dog {
     private:
         int age;
@@ -63,22 +63,21 @@ void Dog::setAge(int a) {
 
 ### std Namespace
 
-C++ 표준 라이브러리 네임스페이스
-대표적으로 cin, cout이 있다.
+C++ 표준 라이브러리 네임스페이스, 대표적으로 cin, cout이 있다.
 
 ### Using 지시문 (Directive)
 
-```CPP
+```cpp
 using namespace std;
 ```
 
-std 네임스페이스의 모든 것을 사용함을 알린다.
+std 네임스페이스의 모든 것을 사용함을 알린다.   
 컴파일러가 인식하지 못하는 이름을 찾으면 std 네임스페이스를 검사한다.
 
 ## Inline 함수
 
-C에서의 #define 문을 이용한 매크로 함수와 유사하다.
-함수 선언, 정의 앞에 inline 키워드를 사용하여 매크로 함수의 부작용을 없애면서 같은 기능을 수행한다.
+C에서의 #define 문을 이용한 매크로 함수와 유사하다.   
+함수 선언, 정의 앞에 inline 키워드를 사용하여 매크로 함수의 부작용을 없애면서 같은 기능을 수행한다.   
 inline 함수는 함수 코드 블록의 복사본인 기계어 코드가 직접 삽입된다.
 
 ## 과제
@@ -91,7 +90,7 @@ inline 함수는 함수 코드 블록의 복사본인 기계어 코드가 직접
 
 #### 멤버 함수 클래스 내부 정의
 
-```CPP
+```cpp
 #include <iostream>
 using namespace std;
 
@@ -134,7 +133,7 @@ int main() {
 
 #### 멤버 함수 클래스 외부 정의
 
-```CPP
+```cpp
 #include <iostream>
 using namespace std;
 

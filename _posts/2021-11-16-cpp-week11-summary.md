@@ -2,8 +2,8 @@
 title: C++ 11주차 요약
 author: Ki-Chang Kim (Panther K)
 date: 2021-11-16 12:00 +0900
-categories: [Inst, CPP]
-tags: [cpp, inst, summary]
+categories: [College, CPP]
+tags: [college, cpp]
 ---
 
 ## 연산자 중첩
@@ -24,7 +24,7 @@ tags: [cpp, inst, summary]
 
 ## 과제
 
-```CPP
+```cpp
 #include <iostream>
 
 class Point {

@@ -2,8 +2,8 @@
 title: C++ 12주차 요약
 author: Ki-Chang Kim (Panther K)
 date: 2021-11-23 20:14 +0900
-categories: [Inst, CPP]
-tags: [cpp, inst, summary]
+categories: [College, CPP]
+tags: [college, cpp]
 ---
 
 ## 기본클래스, 파생클래스
@@ -12,9 +12,9 @@ tags: [cpp, inst, summary]
 
 ## 상속 접근 제어
 
-상속 접근 제어 속성은 private, protected, public으로 나누어져 있다.
-public 상속 접근인 경우에는 기본 클래스의 public, protected 멤버들은 파생 클래스의 public, protected 멤버가 되며 기본 클래스의 private 멤버는 private 속성으로 남으며 파생 클래스에서 접근할 수 없다.
-private 상속 접근은 기본 클래스의 모든 멤버가 파생 클래스의 private 멤버가 되며 기본 클래스의 public 멤버들은 클래스 외부에서 접근이 불가능하며 오직 파생 클래스의 멤버함수에 의해서만 접근이 가능하다.
+상속 접근 제어 속성은 private, protected, public으로 나누어져 있다.   
+public 상속 접근인 경우에는 기본 클래스의 public, protected 멤버들은 파생 클래스의 public, protected 멤버가 되며 기본 클래스의 private 멤버는 private 속성으로 남으며 파생 클래스에서 접근할 수 없다.   
+private 상속 접근은 기본 클래스의 모든 멤버가 파생 클래스의 private 멤버가 되며 기본 클래스의 public 멤버들은 클래스 외부에서 접근이 불가능하며 오직 파생 클래스의 멤버함수에 의해서만 접근이 가능하다.   
 protected 상속 접근 제어는 거의 사용되지 않으며 기본 클래스에서 private 속성을 유지하면서 파생 클래스에서 접근하는 것이 가능하며 기본 클래스의 protected 멤버들이 파생 클래스 멤버에서 접근할 수 있다는 점을 제외하면 private 접근과 동일하다.
 
 ## 상속 생성자, 소멸자
@@ -23,7 +23,7 @@ protected 상속 접근 제어는 거의 사용되지 않으며 기본 클래스
 
 ## 계층적 다중 상속
 
-파생 클래스가 여러 개의 기본 클래스를 상속받을 수 있으며 파생 클래스가 또 다른 파생 클래스의 기본 클래스로 사용되는 방법으로 다중 클래스 계층을 형성한다.
+파생 클래스가 여러 개의 기본 클래스를 상속받을 수 있으며 파생 클래스가 또 다른 파생 클래스의 기본 클래스로 사용되는 방법으로 다중 클래스 계층을 형성한다.   
 MFC는 계층적 구조를 통해 클래스를 상속한다.
 
 ## 기타
