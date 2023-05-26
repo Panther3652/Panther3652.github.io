@@ -1,0 +1,87 @@
+# The layout text of site
+
+# ----- Commons label -----
+
+layout:
+  post: 포스트
+  category: 카테고리
+  tag: 태그
+
+# The tabs of sidebar
+tabs:
+  # format: <filename_without_extension>: <value>
+  home: 메인
+  categories: 카테고리
+  tags: 태그
+  archives: 기록
+  about: 블로그 정보
+
+# text displayed in the search bar
+search:
+  hint: 검색
+  cancel: 취소
+
+panel:
+  lastmod: 최근 포스트
+  trending_tags: 인기있는 태그
+  toc: 목차
+
+#  The liquid date format › http://strftime.net/
+date_format:
+  tooltip: '%Y %B %d, %R %z'
+  post:
+    long: '%Y %B %d'
+    short: '%B %d'
+    archive_month: '%b'
+
+copyright:
+  # Shown at the bottom of the post
+  license:
+    template: This post is licensed under :LICENSE_NAME by the author.
+    name: CC BY 4.0
+    link: https://creativecommons.org/licenses/by/4.0/
+
+  # Displayed in the footer
+  brief: Some rights reserved.
+  verbose: >-
+    Except where otherwise noted, the blog posts on this site are licensed
+    under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.
+
+meta: Powered by :PLATFORM with :THEME theme.
+
+not_found:
+  statment: Sorry, we've misplaced that URL or it's pointing to something that doesn't exist.
+  hint_template: :HEAD_BAK to try finding it again, or search for it on the :ARCHIVES_PAGE.
+  head_back: Head back Home
+  archives_page: Archives page
+
+# ----- Posts related labels -----
+
+post:
+  published: 작성
+  updated: 수정
+  timeago:
+    day: 일 전
+    hour: 시간 전
+    minute: 분 전
+    just_now: 지금
+  words: 단어
+  pageview_measure: 읽음
+  read_time:
+    unit: 분
+    prompt: 소요
+  relate_posts: 엙어볼만한 포스트
+  share: 공유
+  button:
+    next: 다음
+    previous: 이전
+    copy:
+      title: 링크 복사
+      succeed: 링크가 성공적으로 복사되었습니다!
+  # pinned prompt of posts list on homepage
+  pin_prompt: 고정됨
+
+# categories page
+categories:
+  category_measure: 카테고리
+  post_measure: 포스트
