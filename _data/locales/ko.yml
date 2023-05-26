@@ -70,7 +70,7 @@ post:
   read_time:
     unit: 분
     prompt: 소요
-  relate_posts: 엙어볼만한 포스트
+  relate_posts: 읽어볼만한 포스트
   share: 공유
   button:
     next: 다음
