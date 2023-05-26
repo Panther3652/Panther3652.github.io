@@ -1,5 +1,5 @@
 ---
-title: Scanner 클래스
+title: &#91;Java 기초&#93; Scanner 클래스
 author: Ki-Chang Kim (Panther K)
 date: 2023-05-22 15:00 +0900
 categories: [Inst, Java]
