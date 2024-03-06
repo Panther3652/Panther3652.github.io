@@ -27,7 +27,12 @@
   </div><!-- .profile-wrapper -->
 
   <ul class="w-100">
-
+    <li class="nav-itemactive">
+      <a href="https://pantherk.me" class="nav-link">
+        <i class="fa-fw fas fa-main ml-xl-3 mr-xl-3 unloaded"></i>
+        <span>{{ site.data.locales[site.lang].tabs.main | default: "main" | upcase}}</span>
+      </a>
+    </li>
     <!-- home -->
     <li class="nav-item{% if page.layout == 'home' %}{{ " active" }}{% endif %}">
       <a href="{{ '/' | relative_url }}" class="nav-link">
