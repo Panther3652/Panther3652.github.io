@@ -1,0 +1,591 @@
+<!DOCTYPE html><html lang="ko" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"><meta name="day-prompt" content="일 전"><meta name="hour-prompt" content="시간 전"><meta name="minute-prompt" content="분 전"><meta name="justnow-prompt" content="지금"><meta name="generator" content="Jekyll v4.4.1" /><meta property="og:title" content="iOS 프로그래밍 실무 6주차" /><meta name="author" content="Ki-Chang Kim (Panther K)" /><meta property="og:locale" content="ko" /><meta name="description" content="옵셔널 체이닝 (Optional Chaining)" /><meta property="og:description" content="옵셔널 체이닝 (Optional Chaining)" /><link rel="canonical" href="https://panther3652.github.io/posts/iOS-3-week6/" /><meta property="og:url" content="https://panther3652.github.io/posts/iOS-3-week6/" /><meta property="og:site_name" content="Ki-Chang Kim’s Workspace" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2025-04-09T14:00:00+09:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="iOS 프로그래밍 실무 6주차" /><meta name="twitter:site" content="@kckim2617" /><meta name="twitter:creator" content="@Ki-Chang Kim (Panther K)" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"Ki-Chang Kim (Panther K)"},"dateModified":"2025-04-09T16:47:14+09:00","datePublished":"2025-04-09T14:00:00+09:00","description":"옵셔널 체이닝 (Optional Chaining)","headline":"iOS 프로그래밍 실무 6주차","mainEntityOfPage":{"@type":"WebPage","@id":"https://panther3652.github.io/posts/iOS-3-week6/"},"url":"https://panther3652.github.io/posts/iOS-3-week6/"}</script><title>iOS 프로그래밍 실무 6주차 | Ki-Chang Kim's Workspace</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="Ki-Chang Kim's Workspace"><meta name="application-name" content="Ki-Chang Kim's Workspace"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://fonts.gstatic.com"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="preconnect" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1.1.0/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-spy="scroll" data-target="#toc"><div id="sidebar" class="d-flex flex-column align-items-end" lang=""><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" alt="avatar" class="mx-auto"> <img src="https://avatars.githubusercontent.com/u/16862300?v=4" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title mt-3"> <a href="/">Ki-Chang Kim's Workspace</a></div><div class="site-subtitle font-italic">Programming, Life and more</div></div><ul class="w-100"><li class="nav-itemactive"> <a href="https://pantherk.me" class="nav-link"> <i class="fa-fw fas fa-main ml-xl-3 mr-xl-3 unloaded"></i> <span>메인 페이지</span> </a><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>블로그 홈</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>카테고리</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tags ml-xl-3 mr-xl-3 unloaded"></i> <span>태그</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>기록</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info ml-xl-3 mr-xl-3 unloaded"></i> <span>블로그 정보</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center"> <a href="https://github.com/Panther3652" aria-label="github" class="order-3" target="_blank" rel="noopener"> <i class="fab fa-github-alt"></i> </a> <a href="https://twitter.com/kckim2617" aria-label="twitter" class="order-4" target="_blank" rel="noopener"> <i class="fab fa-twitter"></i> </a> <a href=" javascript:location.href = 'mailto:' + ['gckim2617','gmail.com'].join('@')" aria-label="email" class="order-5" > <i class="fas fa-envelope"></i> </a> <a href="/feed.xml" aria-label="rss" class="order-6" > <i class="fas fa-rss"></i> </a> <span class="icon-border order-2"></span> <span id="mode-toggle-wrapper" class="order-1"> <i class="mode-toggle fas fa-adjust"></i> <script type="text/javascript"> class ModeToggle { static get MODE_KEY() { return "mode"; } static get DARK_MODE() { return "dark"; } static get LIGHT_MODE() { return "light"; } constructor() { if (this.hasMode) { if (this.isDarkMode) { if (!this.isSysDarkPrefer) { this.setDark(); } } else { if (this.isSysDarkPrefer) { this.setLight(); } } } var self = this; /* always follow the system prefers */ this.sysDarkPrefers.addListener(function() { if (self.hasMode) { if (self.isDarkMode) { if (!self.isSysDarkPrefer) { self.setDark(); } } else { if (self.isSysDarkPrefer) { self.setLight(); } } self.clearMode(); } self.updateMermaid(); }); } /* constructor() */ setDark() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.DARK_MODE); } setLight() { $('html').attr(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); sessionStorage.setItem(ModeToggle.MODE_KEY, ModeToggle.LIGHT_MODE); } clearMode() { $('html').removeAttr(ModeToggle.MODE_KEY); sessionStorage.removeItem(ModeToggle.MODE_KEY); } get sysDarkPrefers() { return window.matchMedia("(prefers-color-scheme: dark)"); } get isSysDarkPrefer() { return this.sysDarkPrefers.matches; } get isDarkMode() { return this.mode == ModeToggle.DARK_MODE; } get isLightMode() { return this.mode == ModeToggle.LIGHT_MODE; } get hasMode() { return this.mode != null; } get mode() { return sessionStorage.getItem(ModeToggle.MODE_KEY); } /* get the current mode on screen */ get modeStatus() { if (this.isDarkMode || (!this.hasMode && this.isSysDarkPrefer) ) { return ModeToggle.DARK_MODE; } else { return ModeToggle.LIGHT_MODE; } } updateMermaid() { if (typeof mermaid !== "undefined") { let expectedTheme = (this.modeStatus === ModeToggle.DARK_MODE? "dark" : "default"); let config = { theme: expectedTheme }; /* re-render the SVG › <https://github.com/mermaid-js/mermaid/issues/311#issuecomment-332557344> */ $(".mermaid").each(function() { let svgCode = $(this).prev().children().html(); $(this).removeAttr("data-processed"); $(this).html(svgCode); }); mermaid.initialize(config); mermaid.init(undefined, ".mermaid"); } } flipMode() { if (this.hasMode) { if (this.isSysDarkPrefer) { if (this.isLightMode) { this.clearMode(); } else { this.setLight(); } } else { if (this.isDarkMode) { this.clearMode(); } else { this.setDark(); } } } else { if (this.isSysDarkPrefer) { this.setLight(); } else { this.setDark(); } } this.updateMermaid(); } /* flipMode() */ } /* ModeToggle */ let toggle = new ModeToggle(); $(".mode-toggle").click(function() { toggle.flipMode(); }); </script> </span></div></div><div id="topbar-wrapper" class="row justify-content-center topbar-down"><div id="topbar" class="col-11 d-flex h-100 align-items-center justify-content-between"> <span id="breadcrumb"> <span> <a href="/"> 블로그 홈 </a> </span> <span>iOS 프로그래밍 실무 6주차</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> 포스트</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="검색..."> <i class="fa fa-times-circle fa-fw" id="search-cleaner"></i> </span> <span id="search-cancel" >취소</span></div></div><div id="main-wrapper"><div id="main"><div class="row"><div id="post-wrapper" class="col-12 col-lg-11 col-xl-8"><div class="post pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><h1 data-toc-skip>iOS 프로그래밍 실무 6주차</h1><div class="post-meta text-muted d-flex flex-column"><div> <span class="semi-bold"> Ki-Chang Kim (Panther K) </span> 작성 <span class="timeago " data-toggle="tooltip" data-placement="bottom" title="2025 April 09, 14:00 +0900" >April 09<i class="unloaded">2025-04-09T14:00:00+09:00</i> </span></div><div> <span> 수정 <span class="timeago lastmod" data-toggle="tooltip" data-placement="bottom" title="2025 April 09, 16:47 +0900" >April 09<i class="unloaded">2025-04-09T16:47:14+09:00</i> </span> </span> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="4099 단어">22 분 소요</span></div></div><div class="post-content"><h2 id="옵셔널-체이닝-optional-chaining">옵셔널 체이닝 (Optional Chaining)</h2><ul><li>옵셔널 타입으로 정의된 값이 프로퍼티나 메서드를 가지고 있을 때, 다중 if를 쓰지 않고 간결하게 코드를 작성하기 위해 사용<li>옵셔널 타입의 데이터는 연산이 불가능<ul><li>연산을 하기 위해서는 옵셔널을 해제해야 하는데, 많은 양의 옵셔널 타입의 데이터의 경우 다시 한번 옵셔널 타입으로 변경을 하면서 해제를 시켜줌</ul></ul><h3 id="옵셔널-체이닝을-지원하는-언어">옵셔널 체이닝을 지원하는 언어</h3><h4 id="javascript">Javascript</h4><ul><li>?. 연산자를 이용하여 옵셔널 체이닝 구현</ul><div lang="javascript" class="language-javascript highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="kd">const</span> <span class="nx">user</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">profile</span><span class="p">:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="dl">'</span><span class="s1">Alice</span><span class="dl">'</span>
+    <span class="p">}</span>
+<span class="p">};</span>
+<span class="kd">const</span> <span class="nx">userName</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">profile</span><span class="p">?.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// 'Alice'</span>
+<span class="kd">const</span> <span class="nx">userAge</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">profile</span><span class="p">?.</span><span class="nx">age</span><span class="p">;</span>   <span class="c1">// undefined (오류 발생하지 않음)</span>
+</pre></table></code></div></div><h4 id="typescript">Typescript</h4><ul><li>? 연산자를 이용하여 옵셔널 체이닝 구현</ul><div lang="typescript" class="language-typescript highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="kr">interface</span> <span class="nx">User</span> <span class="p">{</span>
+    <span class="nl">profile</span><span class="p">?:</span> <span class="p">{</span>
+        <span class="na">name</span><span class="p">:</span> <span class="kr">string</span><span class="p">;</span>
+        <span class="nl">age</span><span class="p">?:</span> <span class="kr">number</span><span class="p">;</span>
+    <span class="p">};</span>
+<span class="p">}</span>
+<span class="kd">const</span> <span class="nx">user</span><span class="p">:</span> <span class="nx">User</span> <span class="o">=</span> <span class="p">{};</span>
+<span class="kd">const</span> <span class="nx">userName</span> <span class="o">=</span> <span class="nx">user</span><span class="p">.</span><span class="nx">profile</span><span class="p">?.</span><span class="nx">name</span><span class="p">;</span> <span class="c1">// undefined</span>
+</pre></table></code></div></div><h4 id="python">Python</h4><ul><li>직접적인 옵셔널 체이닝 문법은 없지만 getattr을 사용해 유사한 기능 구현</ul><div lang="python" class="language-python highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="n">user</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">profile</span><span class="sh">'</span><span class="p">:</span> <span class="p">{</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">:</span> <span class="sh">'</span><span class="s">Alice</span><span class="sh">'</span><span class="p">}}</span>
+<span class="n">user_name</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">profile</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">name</span><span class="sh">'</span><span class="p">)</span>  <span class="c1"># 'Alice'
+</span><span class="n">user_age</span> <span class="o">=</span> <span class="n">user</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">profile</span><span class="sh">'</span><span class="p">,</span> <span class="p">{}).</span><span class="nf">get</span><span class="p">(</span><span class="sh">'</span><span class="s">age</span><span class="sh">'</span><span class="p">)</span>    <span class="c1"># None
+</span></pre></table></code></div></div><h3 id="kotlin">Kotlin</h3><ul><li>?. 연산자를 이용해 옵셔널 체이닝 구현</ul><div lang="kotlin" class="language-kotlin highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre><span class="kd">data class</span> <span class="nc">Profile</span><span class="p">(</span><span class="kd">val</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?,</span> <span class="kd">val</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?)</span>
+<span class="kd">data class</span> <span class="nc">User</span><span class="p">(</span><span class="kd">val</span> <span class="py">profile</span><span class="p">:</span> <span class="nc">Profile</span><span class="p">?)</span>
+<span class="kd">val</span> <span class="py">user</span><span class="p">:</span> <span class="nc">User</span><span class="p">?</span> <span class="p">=</span> <span class="nc">User</span><span class="p">(</span><span class="k">null</span><span class="p">)</span>
+<span class="kd">val</span> <span class="py">userName</span> <span class="p">=</span> <span class="n">user</span><span class="o">?.</span><span class="n">profile</span><span class="o">?.</span><span class="n">name</span> <span class="c1">// null</span>
+</pre></table></code></div></div><h3 id="옵셔널을-언래핑하는-방법">옵셔널을 언래핑하는 방법</h3><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">x</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span> <span class="o">=</span> <span class="s">"Hi"</span> <span class="c1">// 옵셔널 문자열 변수 x를 선언하고 "Hi"로 초기화</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">x</span><span class="o">!</span><span class="p">)</span> <span class="c1">// x의 값과 x를 강제 언래핑한 값을 출력 (x가 nil이 아닐 때만 안전함)</span>
+
+<span class="k">if</span> <span class="k">let</span> <span class="nv">a</span> <span class="o">=</span> <span class="n">x</span> <span class="p">{</span> <span class="c1">// x가 nil이 아닐 경우에만 a에 값을 할당</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">a</span><span class="p">)</span> <span class="c1">// a의 값을 출력 (여기서는 "Hi"가 출력됨)</span>
+<span class="p">}</span>
+
+<span class="k">let</span> <span class="nv">b</span> <span class="o">=</span> <span class="n">x</span><span class="o">!.</span><span class="n">count</span> <span class="c1">// x를 강제 언래핑하고 그 문자열의 길이를 b에 할당</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">b</span><span class="p">),</span> <span class="n">b</span><span class="p">)</span> <span class="c1">// b의 타입과 값을 출력 (Int, 2)</span>
+
+<span class="k">let</span> <span class="nv">b1</span> <span class="o">=</span> <span class="n">x</span><span class="p">?</span><span class="o">.</span><span class="n">count</span> <span class="c1">// x가 nil이 아닐 경우에만 count를 계산하여 b1에 할당</span>
+<span class="nf">print</span><span class="p">(</span><span class="nf">type</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="n">b1</span><span class="p">),</span> <span class="n">b1</span><span class="p">,</span> <span class="n">b1</span><span class="o">!</span><span class="p">)</span> <span class="c1">// b1의 타입과 값을 출력 (Optional&lt;Int&gt;, 2, 2)</span>
+
+<span class="k">let</span> <span class="nv">c</span> <span class="o">=</span> <span class="n">x</span> <span class="p">??</span> <span class="s">""</span> <span class="c1">// x가 nil일 경우 빈 문자열을 c에 할당</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">c</span><span class="p">)</span> <span class="c1">// c의 값을 출력 (여기서는 "Hi"가 출력됨)</span>
+</pre></table></code></div></div><h3 id="와-의-선언문과-실행문에서의-차이점">?와 !의 선언문과 실행문에서의 차이점</h3><div class="table-wrapper"><table><thead><tr><th style="text-align: center">구분<th style="text-align: center"><code class="language-plaintext highlighter-rouge">?</code> (옵셔널)<th style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code> (강제 언래핑)<tbody><tr><td style="text-align: center">선언문<td style="text-align: center"><code class="language-plaintext highlighter-rouge">var name: String?</code><td style="text-align: center"><code class="language-plaintext highlighter-rouge">var name: String!</code><tr><td style="text-align: center"> <td style="text-align: center">- nil 값을 가질 수 있음<td style="text-align: center">- nil이 아님을 보장<tr><td style="text-align: center">실행문<td style="text-align: center"><code class="language-plaintext highlighter-rouge">let length = name?.count</code><td style="text-align: center"><code class="language-plaintext highlighter-rouge">let length = name!.count</code><tr><td style="text-align: center"> <td style="text-align: center">- nil일 경우 nil 반환<td style="text-align: center">- nil일 경우 런타임 오류 발생</table></div><h3 id="와-의-비교">?와 !의 비교</h3><div class="table-wrapper"><table><thead><tr><th style="text-align: center">구분<th style="text-align: center"><code class="language-plaintext highlighter-rouge">var x: Int!</code><th style="text-align: center"><code class="language-plaintext highlighter-rouge">var x: Int?</code><tbody><tr><td style="text-align: center"><strong>타입</strong><td style="text-align: center">암시적 언래핑 옵셔널 (Implicitly Unwrapped Optional)<td style="text-align: center">옵셔널 (Optional)<tr><td style="text-align: center"><strong>초기값</strong><td style="text-align: center">nil을 가질 수 있으나, 사용 시 반드시 값이 있어야 함<td style="text-align: center">nil을 가질 수 있으며, 안전하게 사용 가능<tr><td style="text-align: center"><strong>사용 목적</strong><td style="text-align: center">nil이 아님을 보장하는 경우에 사용 (예: IBOutlet 등)<td style="text-align: center">nil 가능성을 고려하여 안전하게 사용<tr><td style="text-align: center"><strong>강제 언래핑</strong><td style="text-align: center">사용 시 강제 언래핑 필요 없음 (암시적 언래핑)<td style="text-align: center">사용 시 <code class="language-plaintext highlighter-rouge">!</code>로 강제 언래핑 필요<tr><td style="text-align: center"><strong>런타임 오류</strong><td style="text-align: center">nil일 경우 런타임 오류 발생<td style="text-align: center">nil일 경우 안전하게 처리 가능</table></div><h3 id="실행문에서-와-의-차이점">실행문에서 ?와 !의 차이점</h3><div class="table-wrapper"><table><thead><tr><th style="text-align: center">구분<th style="text-align: center"><code class="language-plaintext highlighter-rouge">?</code> (옵셔널 체이닝)<th style="text-align: center"><code class="language-plaintext highlighter-rouge">!</code> (강제 언래핑)<tbody><tr><td style="text-align: center"><strong>사용법</strong><td style="text-align: center"><code class="language-plaintext highlighter-rouge">let length = optionalString?.count</code><td style="text-align: center"><code class="language-plaintext highlighter-rouge">let length = optionalString!.count</code><tr><td style="text-align: center"><strong>nil 처리</strong><td style="text-align: center">nil일 경우 nil 반환<td style="text-align: center">nil일 경우 런타임 오류 발생<tr><td style="text-align: center"><strong>안전성</strong><td style="text-align: center">안전하게 접근 가능<td style="text-align: center">위험성이 있음 (강제 언래핑)<tr><td style="text-align: center"><strong>예시</strong><td style="text-align: center"><code class="language-plaintext highlighter-rouge">let name = user?.name</code> // user가 nil일 경우 name은 nil<td style="text-align: center"><code class="language-plaintext highlighter-rouge">let name = user!.name</code> // user가 nil일 경우 오류 발생</table></div><h3 id="옵셔널-체이닝-예시">옵셔널 체이닝 예시</h3><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre><td class="rouge-code"><pre><span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// 사람의 이름을 저장하는 변수</span>
+    <span class="k">var</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span>    <span class="c1">// 사람의 나이를 저장하는 변수</span>
+    
+    <span class="c1">// 초기화 메서드</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">age</span><span class="p">:</span> <span class="kt">Int</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1">// name 매개변수를 인스턴스 변수에 할당</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">age</span> <span class="o">=</span> <span class="n">age</span>   <span class="c1">// age 매개변수를 인스턴스 변수에 할당</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Person 클래스의 인스턴스 kim 생성</span>
+<span class="k">let</span> <span class="nv">kim</span><span class="p">:</span> <span class="kt">Person</span> <span class="o">=</span> <span class="kt">Person</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Kim"</span><span class="p">,</span> <span class="nv">age</span><span class="p">:</span> <span class="mi">20</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">kim</span><span class="o">.</span><span class="n">age</span><span class="p">)</span> <span class="c1">// kim의 나이를 출력 (20)</span>
+
+<span class="c1">// Person 클래스의 옵셔널 인스턴스 han 생성</span>
+<span class="k">let</span> <span class="nv">han</span><span class="p">:</span> <span class="kt">Person</span><span class="p">?</span> <span class="o">=</span> <span class="kt">Person</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Han"</span><span class="p">,</span> <span class="nv">age</span><span class="p">:</span> <span class="mi">25</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">han</span><span class="p">?</span><span class="o">.</span><span class="n">age</span><span class="p">)</span> <span class="c1">// 옵셔널 체이닝을 사용하여 han의 나이를 출력 (nil일 경우 nil 반환)</span>
+
+<span class="c1">// 강제 언래핑</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">han</span><span class="o">!.</span><span class="n">age</span><span class="p">)</span> <span class="c1">// han이 nil이 아닐 경우 나이를 출력 (25), han이 nil일 경우 오류 발생</span>
+
+<span class="c1">// 옵셔널 체이닝 후 강제 언래핑</span>
+<span class="nf">print</span><span class="p">((</span><span class="n">han</span><span class="p">?</span><span class="o">.</span><span class="n">age</span><span class="p">)</span><span class="o">!</span><span class="p">)</span> <span class="c1">// han이 nil이 아닐 경우 나이를 출력 (25), han이 nil일 경우 오류 발생</span>
+
+<span class="c1">// 옵셔널 바인딩을 사용하여 han의 나이를 안전하게 가져오기</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">hanAge</span> <span class="o">=</span> <span class="n">han</span><span class="p">?</span><span class="o">.</span><span class="n">age</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">hanAge</span><span class="p">)</span> <span class="c1">// hanAge가 nil이 아닐 경우 나이를 출력 (25)</span>
+<span class="p">}</span> <span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"nil"</span><span class="p">)</span> <span class="c1">// han이 nil일 경우 "nil" 출력</span>
+<span class="p">}</span>
+</pre></table></code></div></div><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+</pre><td class="rouge-code"><pre><span class="kd">class</span> <span class="kt">Company</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">ceo</span><span class="p">:</span> <span class="kt">Person</span><span class="p">?</span> <span class="c1">// 회사의 CEO를 나타내는 옵셔널 Person 타입 변수</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// 사람의 이름을 저장하는 변수</span>
+    
+    <span class="c1">// 초기화 메서드</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1">// name 매개변수를 인스턴스 변수에 할당</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Company 클래스의 인스턴스 apple 생성</span>
+<span class="kd">class</span> <span class="kt">Company</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">ceo</span><span class="p">:</span> <span class="kt">Person</span><span class="p">?</span> <span class="c1">// 회사의 CEO를 나타내는 옵셔널 Person 타입 변수</span>
+<span class="p">}</span>
+
+<span class="kd">class</span> <span class="kt">Person</span> <span class="p">{</span>
+    <span class="k">var</span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span> <span class="c1">// 사람의 이름을 저장하는 변수</span>
+    
+    <span class="c1">// 초기화 메서드</span>
+    <span class="nf">init</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">self</span><span class="o">.</span><span class="n">name</span> <span class="o">=</span> <span class="n">name</span> <span class="c1">// name 매개변수를 인스턴스 변수에 할당</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="c1">// Company 클래스의 인스턴스 apple 생성</span>
+<span class="k">let</span> <span class="nv">apple</span> <span class="o">=</span> <span class="kt">Company</span><span class="p">()</span>
+
+<span class="c1">// apple의 CEO로 "Kim"이라는 이름을 가진 Person 인스턴스 할당</span>
+<span class="n">apple</span><span class="o">.</span><span class="n">ceo</span> <span class="o">=</span> <span class="kt">Person</span><span class="p">(</span><span class="nv">name</span><span class="p">:</span> <span class="s">"Kim"</span><span class="p">)</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">apple</span><span class="o">.</span><span class="n">ceo</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// 옵셔널을 직접 접근, 오류 발생</span>
+
+
+<span class="c1">// 옵셔널 체이닝 없이 사용 시, 안전성을 위해 if let 문 사용</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">ceo</span> <span class="o">=</span> <span class="n">apple</span><span class="o">.</span><span class="n">ceo</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">ceo</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// ceo가 nil이 아닐 경우, ceo의 이름 출력 (Kim)</span>
+<span class="p">}</span>
+
+<span class="c1">// 강제 언래핑을 사용하여 CEO의 이름을 출력</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">apple</span><span class="o">.</span><span class="n">ceo</span><span class="o">!.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// "Kim" (apple.ceo가 nil이 아닐 때만 안전하게 사용 가능)</span>
+
+<span class="c1">// 옵셔널 체이닝을 사용하여 CEO의 이름을 안전하게 가져오기</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">apple</span><span class="o">.</span><span class="n">ceo</span><span class="p">?</span><span class="o">.</span><span class="n">name</span><span class="p">)</span> <span class="c1">// Optional("Kim") (옵셔널로 이름을 반환)</span>
+
+<span class="c1">// 옵셔널 체이닝과 옵셔널 바인딩을 사용하여 이름을 안전하게 출력</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">name</span> <span class="o">=</span> <span class="n">apple</span><span class="o">.</span><span class="n">ceo</span><span class="p">?</span><span class="o">.</span><span class="n">name</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">name</span><span class="p">)</span> <span class="c1">// "Kim" (name이 nil이 아닐 경우 출력)</span>
+<span class="p">}</span>
+
+<span class="c1">// nil 병합 연산자를 사용하여 CEO가 없는 경우의 기본값 설정</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">apple</span><span class="o">.</span><span class="n">ceo</span><span class="p">?</span><span class="o">.</span><span class="n">name</span> <span class="p">??</span> <span class="s">"CEO가 없습니다"</span><span class="p">)</span> <span class="c1">// "Kim" (apple.ceo가 nil이 아닐 경우 이름 출력, nil일 경우 "CEO가 없습니다" 출력)</span>
+</pre></table></code></div></div><h2 id="오류-처리-error-handling">오류 처리 (Error Handling)</h2><p><img data-proofer-ignore data-src="/assets/img/post/25-04-09/1.png" alt="week6-1" /></p><h3 id="오류-처리-방법">오류 처리 방법</h3><ul><li>try?<ul><li>오류를 간단히 무시하거나 실패 여부만 확인하고 싶을 때 사용</ul><li>try!<ul><li>오류가 절대 발생하지 않을 것이라고 가정할 때 사용<li>오류 발생 시 프로그램 크래시 발생</ul><li>Throwing Function<ul><li>실행 중에 문제가 발생할 가능성이 있을 때, 오류를 던질 수 있는 함수<li>매개변수 괄호 다음에 throws라는 키워드가 있는 함수는 그냥 사용할 수 없고 Error Handling을 해야 함.<li>가장 많이 사용하는 Throwing Function 10가지<ul><li>JSONSerialization.jsonObject(with:options:)<li>Data(contentsOf:)<li>String(contentsOf:encoding:)<li>FileManager.createFile(atPath:contents:attributes:)<li>URLResourceValues.setValue(_:forKey:)<li>AVAudioPlayer(contentsOf:)<li>UIImage(data:)<li>NSKeyedUnarchiver.unarchiveTopLevelObjectWithData(_:)<li>MKMapSnapshotter.start(with:completion:)<li>JSONDecoder.decode(_:from:)</ul><li>호출 방식<ul><li>Do ~ Try ~ Catch 형식으로 Error Handling을 해야 함.<ul><li>그러지 않을 시 Call can throw, but it is not marked with ‘try’ and the error is not handled” 오류가 발생</ul><li><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="k">do</span> <span class="p">{</span>
+  <span class="c1">// AVAudioPlayer 초기화 (throwing function)</span>
+  <span class="n">audioPlayer</span> <span class="o">=</span> <span class="k">try</span> <span class="kt">AVAudioPlayer</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="n">url</span><span class="p">)</span>
+  <span class="n">audioPlayer</span><span class="p">?</span><span class="o">.</span><span class="nf">prepareToPlay</span><span class="p">()</span> <span class="c1">// 준비</span>
+  <span class="n">audioPlayer</span><span class="p">?</span><span class="o">.</span><span class="nf">play</span><span class="p">()</span> <span class="c1">// 재생 시작</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">{</span>
+  <span class="c1">// 오류 처리</span>
+  <span class="nf">print</span><span class="p">(</span><span class="s">"오디오 플레이어 초기화 중 오류 발생: </span><span class="se">\(</span><span class="n">error</span><span class="o">.</span><span class="n">localizedDescription</span><span class="se">)</span><span class="s">"</span><span class="p">)</span>
+<span class="p">}</span>
+</pre></table></code></div></div></ul></ul></ul><h2 id="제네릭-generic">제네릭 (Generic)</h2><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre><span class="c1">// 제네릭 함수 정의</span>
+<span class="kd">func</span> <span class="n">myPrint</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="kt">T</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="p">{</span>
+    <span class="c1">// 매개변수 b와 a를 출력</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">b</span><span class="p">,</span> <span class="n">a</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="c1">// 정수 타입의 인자를 사용하여 myPrint 호출</span>
+<span class="nf">myPrint</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// 출력: 2 1</span>
+
+<span class="c1">// 실수 타입의 인자를 사용하여 myPrint 호출</span>
+<span class="nf">myPrint</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="mf">2.5</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="mf">3.5</span><span class="p">)</span> <span class="c1">// 출력: 3.5 2.5</span>
+
+<span class="c1">// 문자열 타입의 인자를 사용하여 myPrint 호출</span>
+<span class="nf">myPrint</span><span class="p">(</span><span class="nv">a</span><span class="p">:</span> <span class="s">"Hi"</span><span class="p">,</span> <span class="nv">b</span><span class="p">:</span> <span class="s">"Hello"</span><span class="p">)</span> <span class="c1">// 출력: Hello Hi</span>
+</pre></table></code></div></div><p><img data-proofer-ignore data-src="/assets/img/post/25-04-09/2.png" alt="week6-2" /></p><ul><li>Generic 구조체: Array</ul><h2 id="collection-type">Collection Type</h2><ul><li>여러 개의 값을 하나의 변수에 저장하고 관리할 수 있는 데이터 타입</ul><h3 id="array">Array</h3><h4 id="프로퍼티">프로퍼티</h4><h5 id="count"><code class="language-plaintext highlighter-rouge">count</code></h5><ul><li><strong>설명</strong>: 배열의 요소 개수를 반환<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">fruits</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Apple"</span><span class="p">,</span> <span class="s">"Banana"</span><span class="p">,</span> <span class="s">"Cherry"</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">fruits</span><span class="o">.</span><span class="n">count</span><span class="p">)</span> <span class="c1">// 출력: 3</span>
+</pre></table></code></div></div></ul><h4 id="메서드">메서드</h4><h5 id="append_"><code class="language-plaintext highlighter-rouge">append(_:)</code></h5><ul><li><strong>설명</strong>: 배열의 끝에 새로운 요소를 추가<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">numbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="n">numbers</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">numbers</span><span class="p">)</span> <span class="c1">// 출력: [1, 2, 3, 4]</span>
+</pre></table></code></div></div></ul><h5 id="insert_at"><code class="language-plaintext highlighter-rouge">insert(_:at:)</code></h5><ul><li><strong>설명</strong>: 지정된 인덱스에 새로운 요소를 삽입<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Red"</span><span class="p">,</span> <span class="s">"Green"</span><span class="p">,</span> <span class="s">"Blue"</span><span class="p">]</span>
+<span class="n">colors</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="s">"Yellow"</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="c1">// 출력: ["Red", "Yellow", "Green", "Blue"]</span>
+</pre></table></code></div></div></ul><h5 id="removeat"><code class="language-plaintext highlighter-rouge">remove(at:)</code></h5><ul><li><strong>설명</strong>: 지정된 인덱스의 요소를 제거<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">animals</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Cat"</span><span class="p">,</span> <span class="s">"Dog"</span><span class="p">,</span> <span class="s">"Bird"</span><span class="p">]</span>
+<span class="n">animals</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="mi">0</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">animals</span><span class="p">)</span> <span class="c1">// 출력: ["Dog", "Bird"]</span>
+</pre></table></code></div></div></ul><h5 id="contains_"><code class="language-plaintext highlighter-rouge">contains(_:)</code></h5><ul><li><strong>설명</strong>: 배열에 특정 요소가 포함되어 있는지 여부를 확인<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">cities</span> <span class="o">=</span> <span class="p">[</span><span class="s">"Seoul"</span><span class="p">,</span> <span class="s">"Tokyo"</span><span class="p">,</span> <span class="s">"New York"</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">cities</span><span class="o">.</span><span class="nf">contains</span><span class="p">(</span><span class="s">"Tokyo"</span><span class="p">))</span> <span class="c1">// 출력: true</span>
+</pre></table></code></div></div></ul><h5 id="sorted"><code class="language-plaintext highlighter-rouge">sorted()</code></h5><ul><li><strong>설명</strong>: 배열의 요소를 정렬하여 새로운 배열을 반환<li><strong>예시</strong>:<div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">unsortedNumbers</span> <span class="o">=</span> <span class="p">[</span><span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">sortedNumbers</span> <span class="o">=</span> <span class="n">unsortedNumbers</span><span class="o">.</span><span class="nf">sorted</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">sortedNumbers</span><span class="p">)</span> <span class="c1">// 출력: [1, 2, 4, 5, 8]</span>
+</pre></table></code></div></div></ul><h4 id="빈-배열-empty-array-사용-시-주의-사항">빈 배열 (Empty Array) 사용 시 주의 사항</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre><td class="rouge-code"><pre><span class="c1">// 정수 타입의 빈 배열을 선언</span>
+<span class="k">var</span> <span class="nv">number</span><span class="p">:</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">// 빈 배열을 let으로 만들 수는 있지만, 초기값에서 변경 불가하므로 배열의 의미가 없음</span>
+<span class="k">var</span> <span class="nv">odd</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]()</span> <span class="c1">// 빈 배열을 초기화</span>
+<span class="k">var</span> <span class="nv">even</span><span class="p">:</span> <span class="kt">Array</span><span class="o">&lt;</span><span class="kt">Int</span><span class="o">&gt;</span> <span class="o">=</span> <span class="kt">Array</span><span class="p">()</span> <span class="c1">// Array 제네릭 타입으로 빈 배열을 초기화</span>
+
+<span class="c1">// 현재 number 배열의 내용을 출력</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">number</span><span class="p">)</span> <span class="c1">// 출력: []</span>
+
+<span class="c1">// print(number[0]) // 오류 발생: 빈 배열이므로 인덱스 0에 접근할 수 없음</span>
+
+<span class="c1">// number 배열에 100을 추가 (let으로 선언한 불변형 배열이라 추가 불가능)</span>
+<span class="c1">// 이 줄은 주석 처리되어 있지만, 실제로는 오류 발생</span>
+<span class="c1">// error: cannot use mutating member on immutable value: 'number' is a 'let' constant</span>
+
+<span class="c1">// print(number[0]) // 오류 발생: 여전히 빈 배열이므로 인덱스 0에 접근할 수 없음</span>
+
+<span class="c1">// number 배열에 200을 추가 (let으로 선언한 경우가 아니므로 이 줄은 실행 가능)</span>
+<span class="c1">// number.append(200) // 이 줄은 주석 처리되어 있지만, 실제로는 오류 발생</span>
+
+<span class="c1">// number 배열의 첫 번째 요소와 두 번째 요소, 전체 배열을 출력</span>
+<span class="c1">// print(number[0], number[1], number) // 오류 발생: 배열의 요소가 없음</span>
+</pre></table></code></div></div><ul><li>빈 배열에 접근 시 오류 발생, 요소 추가 후 접근해야 함</ul><h4 id="forin으로-배열-항목-접근">For~In으로 배열 항목 접근</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">colors</span> <span class="o">=</span> <span class="p">[</span><span class="s">"red"</span><span class="p">,</span> <span class="s">"green"</span><span class="p">,</span> <span class="s">"blue"</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">colors</span><span class="p">)</span> <span class="c1">// ["red", "green", "blue"]</span>
+
+<span class="k">for</span> <span class="n">color</span> <span class="k">in</span> <span class="n">colors</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">color</span><span class="p">)</span>
+    <span class="c1">// red</span>
+    <span class="c1">// green</span>
+    <span class="c1">// blue</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h4 id="배열-항목-카운트-count-비어있는지-확인-isempty">배열 항목 카운트 (Count), 비어있는지 확인 (isEmpty)</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">var</span> <span class="nv">x</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">)</span> <span class="c1">// False</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">isEmpty</span><span class="p">)</span> <span class="c1">// True</span>
+
+<span class="k">if</span> <span class="n">num</span><span class="o">.</span><span class="n">isEmpty</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="s">"비어 있습니다"</span><span class="p">)</span>
+<span class="p">}</span>
+<span class="k">else</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">count</span><span class="p">)</span> <span class="c1">// 4</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h4 id="frist-last-프로퍼티">Frist, Last 프로퍼티</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre><span class="k">let</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+<span class="k">let</span> <span class="nv">num1</span> <span class="o">=</span> <span class="p">[</span><span class="kt">Int</span><span class="p">]()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">num</span><span class="o">.</span><span class="n">last</span><span class="p">)</span> <span class="c1">// Optional(1) Optional(4)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num1</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="n">num1</span><span class="o">.</span><span class="n">last</span><span class="p">)</span> <span class="c1">// nil nil</span>
+
+<span class="k">if</span> <span class="k">let</span> <span class="nv">f</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">first</span><span class="p">,</span> <span class="k">let</span> <span class="nv">l</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="n">last</span> <span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span> <span class="c1">// 1 4</span>
+<span class="p">}</span>
+</pre></table></code></div></div><h4 id="첨자subscript로-접근">첨자(Subscript)로 접근</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">num</span><span class="p">[</span><span class="mi">3</span><span class="p">])</span> <span class="c1">// 1 4</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="n">first</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 1</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="k">in</span> <span class="mi">0</span><span class="o">...</span><span class="n">num</span><span class="o">.</span><span class="n">count</span><span class="o">-</span><span class="mi">1</span><span class="p">{</span>
+    <span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="c1">// 1</span>
+    <span class="c1">// 2</span>
+    <span class="c1">// 3</span>
+    <span class="c1">// 4</span>
+<span class="p">}</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">[</span><span class="mi">1</span><span class="o">...</span><span class="mi">2</span><span class="p">])</span> <span class="c1">// [2, 3]</span>
+
+<span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="o">...</span><span class="mi">2</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">30</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [10, 20, 30, 4]</span>
+</pre></table></code></div></div><h4 id="요소-추가제거">요소 추가/제거</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">append</span><span class="p">(</span><span class="nv">contentsOf</span><span class="p">:</span> <span class="p">[</span><span class="mi">6</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span><span class="p">])</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4, 6, 7, 8]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">insert</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="nv">at</span><span class="p">:</span> <span class="mi">4</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4, 5, 6, 7, 8]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">remove</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 5, 6, 7, 8]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">removeLast</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 5, 6, 7]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">firstIndex</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="mi">2</span><span class="p">))</span> <span class="c1">// Optional(1)</span>
+<span class="k">if</span> <span class="k">let</span> <span class="nv">i</span> <span class="o">=</span> <span class="n">num</span><span class="o">.</span><span class="nf">firstIndex</span><span class="p">(</span><span class="nv">of</span><span class="p">:</span> <span class="mi">2</span><span class="p">)</span> <span class="p">{</span>
+    <span class="n">num</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">20</span>
+<span class="p">}</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 20, 3, 5, 6, 7]</span>
+
+<span class="n">num</span> <span class="o">=</span> <span class="n">num</span> <span class="o">+</span> <span class="n">num</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 20, 3, 5, 6, 7, 1, 20, 3, 5, 6, 7]</span>
+
+<span class="n">num</span> <span class="o">+=</span> <span class="p">[</span><span class="mi">8</span><span class="p">,</span> <span class="mi">9</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 20, 3, 5, 6, 7, 1, 20, 3, 5, 6, 7, 8, 9]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">removeAll</span><span class="p">()</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// []</span>
+</pre></table></code></div></div><h4 id="array는-값-타입">Array는 값 타입</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="k">var</span> <span class="nv">x</span> <span class="o">=</span> <span class="n">num</span> <span class="c1">// x는 num의 복사본, 별개의 배열</span>
+
+<span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [100, 2, 3]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1">// [1, 2, 3]</span>
+</pre></table></code></div></div><h4 id="array-요소의-최댓값-최솟값-max-min">Array 요소의 최댓값, 최솟값: max(), min()</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">min</span><span class="p">())</span> <span class="c1">// Optional(1)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">max</span><span class="p">())</span> <span class="c1">// Optional(20)</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">min</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 1</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">max</span><span class="p">()</span><span class="o">!</span><span class="p">)</span> <span class="c1">// 20</span>
+</pre></table></code></div></div><h4 id="array-요소-정렬">Array 요소 정렬</h4><div lang="swift" class="language-swift highlighter-rouge"><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre><td class="rouge-code"><pre><span class="k">var</span> <span class="nv">num</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">4</span><span class="p">]</span>
+
+<span class="n">num</span><span class="o">.</span><span class="nf">sort</span><span class="p">()</span> <span class="c1">// 오름차순 정렬하여 원본 변경</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 2, 3, 4, 5]</span>
+
+<span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="o">...</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">num</span><span class="o">.</span><span class="nf">sort</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span><span class="o">&gt;</span><span class="p">)</span> <span class="c1">// 내림차순 정렬하여 원본 변경</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [5, 4, 3, 2, 1]</span>
+
+<span class="n">num</span><span class="p">[</span><span class="mi">0</span><span class="o">...</span><span class="mi">4</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">1</span><span class="p">]</span>
+<span class="n">num</span><span class="o">.</span><span class="nf">reverse</span><span class="p">()</span> <span class="c1">// 반대로 정렬하여 원본 변경</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 5, 4, 3, 2]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">sorted</span><span class="p">())</span> <span class="c1">// 오름차순 정렬 결과를 리턴하고, 원본은 그대로, var x = num.sorted()</span>
+<span class="c1">// [1, 2, 3, 4, 5]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 5, 4, 3, 2]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="o">.</span><span class="nf">sorted</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span><span class="o">&gt;</span><span class="p">))</span> <span class="c1">// 내림차순 정렬 결과를 리턴하고, 원본은 그대로</span>
+<span class="c1">// [5, 4, 3, 2, 1]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">num</span><span class="p">)</span> <span class="c1">// [1, 5, 4, 3, 2]</span>
+</pre></table></code></div></div><ul><li>Sort, Reverse: 원본을 변경함<li>Sorted: 원본을 변경하지 않음</ul><h2 id="접근-제어-access-control-access-modifier">접근 제어 (Access Control, Access Modifier)</h2><div class="table-wrapper"><table><thead><tr><th>접근 제어자<th>설명<th>접근 범위<tbody><tr><td><strong>open</strong><td>가장 개방적인 접근 수준으로, 모듈 외부에서도 접근, 상속, 오버라이드가 가능. 클래스 및 클래스 멤버에만 사용 가능.<td>모듈 외부 포함 어디서나 사용 가능<tr><td><strong>public</strong><td>모듈 외부에서도 접근 가능하지만, 상속 및 오버라이드는 불가능.<td>모듈 외부 포함 어디서나 사용 가능<tr><td><strong>internal</strong><td>기본 접근 수준으로, 동일 모듈 내에서만 접근 가능. 명시적으로 선언하지 않을 경우 기본값으로 설정됨.<td>동일 모듈 내에서만 사용 가능<tr><td><strong>package</strong><td>동일 패키지(같은 Swift Package 내의 다른 모듈)에서만 접근 가능. Swift 5.9에서 도입됨.<td>동일 패키지 내에서만 사용 가능<tr><td><strong>fileprivate</strong><td>동일 파일 내에서만 접근 가능. 다른 파일에서는 접근 불가.<td>동일 파일 내에서만 사용 가능<tr><td><strong>private</strong><td>가장 제한적인 접근 수준으로, 선언된 범위 내에서만 접근 가능. 클래스 내부에서도 다른 확장(extension)에서는 접근 불가.<td>선언된 범위 내에서만 사용 가능</table></div><ul><li>Open, Public: 모듈의 모든 소스 파일 내에서 사용할 수 있음, 정의한 모듈을 가져오는 다른 모듈의 소스 파일에서도 사용할 수 있음.<li>Package: 패키지의 모든 소스 파일 내에서 사용할 수 있지만 패키지 외부의 모든 소스 파일에서는 사용할 수 없음<li>Internal: 해당 모듈의 모든 소스 파일 내에서 사용되지만 해당 모듈 외부의 소스 파일에서는 사용되지 않도록 함.<ul><li>접근 제어 생략 시 Internal 기본 사용</ul><li>Fileprivate: 해당 소스 파일 내에서만 사용 가능<li>Private 블록과 동일한 파일에 있는 해당 선언의 Extension에서만 접근 가능</ul></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/college/'>College</a>, <a href='/categories/ios/'>iOS</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/college/" class="post-tag no-text-decoration" >college</a> <a href="/tags/ios/" class="post-tag no-text-decoration" >ios</a> <a href="/tags/swift/" class="post-tag no-text-decoration" >swift</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">공유</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=iOS 프로그래밍 실무 6주차 - Ki-Chang Kim's Workspace&url=https://panther3652.github.io/posts/iOS-3-week6/" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=iOS 프로그래밍 실무 6주차 - Ki-Chang Kim's Workspace&u=https://panther3652.github.io/posts/iOS-3-week6/" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://telegram.me/share?text=iOS 프로그래밍 실무 6주차 - Ki-Chang Kim's Workspace&url=https://panther3652.github.io/posts/iOS-3-week6/" data-toggle="tooltip" data-placement="top" title="Telegram" target="_blank" rel="noopener" aria-label="Telegram"> <i class="fa-fw fab fa-telegram"></i> </a> <i class="fa-fw fas fa-link small" onclick="copyLink('', '링크가 성공적으로 복사되었습니다!')" data-toggle="tooltip" data-placement="top" title="링크 복사"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted topbar-down"><div class="access"><div id="access-lastmod" class="post"> <span>최근 포스트</span><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/iOS-3-week12/">iOS 프로그래밍 실무 12주차</a><li><a href="/posts/iOS-3-week11/">iOS 프로그래밍 실무 11주차</a><li><a href="/posts/iOS-3-week10/">iOS 프로그래밍 실무 10주차</a><li><a href="/posts/iOS-3-week7/">iOS 프로그래밍 실무 7주차</a><li><a href="/posts/iOS-3-week6/">iOS 프로그래밍 실무 6주차</a></ul></div><div id="access-tags"> <span>인기있는 태그</span><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/college/">college</a> <a class="post-tag" href="/tags/ios/">ios</a> <a class="post-tag" href="/tags/swift/">swift</a> <a class="post-tag" href="/tags/cpp/">cpp</a></div></div></div><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@1.0.1/dist/bootstrap-toc.min.js"></script><div id="toc-wrapper" class="pl-0 pr-4 mb-5"> <span class="pl-3 pt-2 mb-2">목차</span><nav id="toc" data-toggle="toc"></nav></div></div></div><div class="row"><div class="col-12 col-lg-11 col-xl-8"><div id="post-extend-wrapper" class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-md-4 pr-md-4"><div id="related-posts" class="mt-5 mb-2 mb-sm-4"><h3 class="pt-2 mt-1 mb-4 ml-1" data-toc-skip>읽어볼만한 포스트</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/iOS-3-week2/"><div class="card-body"> <span class="timeago small" >March 15<i class="unloaded">2025-03-15T16:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>iOS 프로그래밍 실무 2주차</h3><div class="text-muted small"><p> 데이터 타입 Swift에서 숫자를 저장하기 위한 변수 선언 var myNumber = 10 var myNumber: Int = 10 print() 사용법 var x: Int x = 10 print(x) // 10 print() 함수의 seperator와 terminator를 이용해 출력 양식을 지정해줄 수 있다. sepera...</p></div></div></a></div><div class="card"> <a href="/posts/iOS-3-week3/"><div class="card-body"> <span class="timeago small" >March 19<i class="unloaded">2025-03-19T14:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>iOS 프로그래밍 실무 3주차</h3><div class="text-muted small"><p> 무드등 앱 개발 계획서 인기 무드등 iOS 앱 분석 앱 1: White Noise Night Light Torch 기능: 불면증 치료에 도움을 주는 다양한 색상 조명, 화면 밝기 조절, 잠 타이머, 손전등 기능 1. 앱 2: 야간 조명 수면...</p></div></div></a></div><div class="card"> <a href="/posts/iOS-3-week4/"><div class="card-body"> <span class="timeago small" >March 26<i class="unloaded">2025-03-26T14:00:00+09:00</i> </span><h3 class="pt-0 mt-1 mb-3" data-toc-skip>iOS 프로그래밍 실무 4주차</h3><div class="text-muted small"><p> AppDelegate import UIKit // UIKit 프레임워크를 임포트합니다. UI 구성 요소를 만들기 위해 필요합니다. @main // 프로그램의 진입점을 나타냅니다. class AppDelegate: UIResponder, UIApplicationDelegate { // AppDelegate 클래스는 UIResponder를 상속하고 U...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/iOS-3-week5/" class="btn btn-outline-primary" prompt="이전"><p>iOS 프로그래밍 실무 5주차</p></a> <a href="/posts/iOS-3-week7/" class="btn btn-outline-primary" prompt="다음"><p>iOS 프로그래밍 실무 7주차</p></a></div></div></div></div><footer class="d-flex w-100 justify-content-center"><div class="d-flex justify-content-between align-items-center"><div class="footer-left"><p class="mb-0"> © 2025 <a href="">Ki-Chang Kim</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0"> Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></footer></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><h4 class="text-muted mb-4">인기있는 태그</h4><a class="post-tag" href="/tags/college/">college</a> <a class="post-tag" href="/tags/ios/">ios</a> <a class="post-tag" href="/tags/swift/">swift</a> <a class="post-tag" href="/tags/cpp/">cpp</a></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.7.3/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="https://Panther3652.github.io{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/lozad/dist/lozad.min.js,npm/magnific-popup@1/dist/jquery.magnific-popup.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/popper.js@1.16.1,npm/bootstrap@4/dist/js/bootstrap.min.js"></script> <script defer src="/app.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id="></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', ''); }); </script>
